@@ -24,12 +24,8 @@ async def cmd_start(message: types.Message):
         if arg.startswith("channel_"):
             try:
                 channel_id = int(arg.split("_")[1])
-                user_id = message.from_user.id
-                # Проверяем доступ
-                if channel_id not in await get_user_channels(user_id):
-                    await message.answer("❌ У вас нет доступа к этому каналу.")
-                    return
 
+                # 🔥 УБРАНА проверка доступа — меню публичное!
                 sections = await get_sections_by_channel(channel_id)
                 if not sections:
                     await message.answer("📭 В этом канале пока нет разделов.")
